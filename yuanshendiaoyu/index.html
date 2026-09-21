@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>原神钓鱼-全图鉴钓鱼点位、鱼类图鉴与钓鱼攻略指南</title>
+    <meta name="description" content="原神钓鱼全攻略：包含提米钓鱼任务攻略、全图鉴鱼类分布、钓鱼竿获取方法及钓鱼技巧。为您详细解析游戏中所有鱼类栖息水域，助您轻松完成图鉴收集。">
+    <meta name="keywords" content="原神, 原神钓鱼, 原神钓鱼攻略, 原神钓鱼图鉴, 原神提米, 原神钓鱼点">
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-color: #0077ff;
+            --secondary-color: #00b8d4;
+            --accent-color: #ff9d00;
+            --text-main: #1f2329;
+            --text-sub: #6e7681;
+            --bg-body: #f6f7f8;
+            --bg-card: #ffffff;
+            --border-radius: 12px;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --container-width: 1200px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.2s;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Header */
+        header {
+            background: var(--bg-card);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 20px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo span {
+            color: var(--text-main);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 24px;
+        }
+
+        nav a {
+            font-weight: 500;
+            color: var(--text-sub);
+            font-size: 1rem;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--primary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #0077ff 0%, #00b8d4 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+            font-weight: 800;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .hero-tags {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: rgba(255,255,255,0.2);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            backdrop-filter: blur(4px);
+        }
+
+        /* Main Layout */
+        .main-container {
+            max-width: var(--container-width);
+            margin: -30px auto 40px;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 24px;
+        }
+
+        /* Content Section */
+        .content-section {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .section-card {
+            background: var(--bg-card);
+            border-radius: var(--border-radius);
+            padding: 24px;
+            box-shadow: var(--shadow);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 12px;
+        }
+
+        .section-header h2 {
+            font-size: 1.25rem;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .guide-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .guide-item {
+            display: flex;
+            gap: 16px;
+            padding: 16px;
+            background: #f9fafb;
+            border-radius: 8px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .guide-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.06);
+        }
+
+        .guide-icon {
+            width: 48px;
+            height: 48px;
+            background: #e3f2fd;
+            color: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .guide-content h3 {
+            font-size: 1.1rem;
+            margin-bottom: 4px;
+        }
+
+        .guide-content p {
+            font-size: 0.9rem;
+            color: var(--text-sub);
+        }
+
+        /* Fish Grid */
+        .fish-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 16px;
+        }
+
+        .fish-card {
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 16px;
+            text-align: center;
+            transition: all 0.2s;
+            background: #fff;
+        }
+
+        .fish-card:hover {
+            border-color: var(--primary-color);
+            box-shadow: 0 4px 12px rgba(0, 119, 255, 0.15);
+        }
+
+        .fish-icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 12px;
+            object-fit: contain;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+        }
+
+        .fish-name {
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 4px;
+        }
+
+        .fish-location {
+            font-size: 0.8rem;
+            color: var(--text-sub);
+            background: #f0f2f5;
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .sidebar-card {
+            background: var(--bg-card);
+            border-radius: var(--border-radius);
+            padding: 24px;
+            box-shadow: var(--shadow);
+        }
+
+        .sidebar-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 16px;
+            color: var(--text-main);
+        }
+
+        .location-list li {
+            margin-bottom: 12px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .location-list li:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .location-name {
+            font-weight: 600;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .location-detail {
+            font-size: 0.85rem;
+            color: var(--text-sub);
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--primary-color);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: 500;
+            text-align: center;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .btn:hover {
+            background: #0062cc;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            background: var(--bg-card);
+            border-radius: var(--border-radius);
+            padding: 24px;
+            box-shadow: var(--shadow);
+            margin-top: 24px;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #eee;
+            padding: 16px 0;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-question {
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .faq-answer {
+            color: var(--text-sub);
+            font-size: 0.95rem;
+            padding-left: 24px;
+        }
+
+        /* Footer */
+        footer {
+            background: #1f2329;
+            color: #888;
+            padding: 40px 20px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        footer p {
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .main-container {
+                grid-template-columns: 1fr;
+                margin-top: 0;
+            }
+
+            .nav-container {
+                flex-direction: column;
+                height: auto;
+                padding: 12px 20px;
+                gap: 12px;
+            }
+
+            nav ul {
+                gap: 16px;
+                font-size: 0.9rem;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .fish-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h20M2 12l5-5m-5 5l5 5"/></svg>
+                <span>原神钓鱼</span>攻略
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">首页</a></li>
+                    <li><a href="#guide">新手指南</a></li>
+                    <li><a href="#map">全图鉴</a></li>
+                    <li><a href="#faq">常见问题</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1>探索提米钓鱼任务与全图鉴收集</h1>
+        <p>从蒙德到璃月，从稻妻到须弥，掌握所有水域的鱼类分布，完成图鉴收藏。</p>
+        <div class="hero-tags">
+            <span class="tag">提米钓鱼任务</span>
+            <span class="tag">全图鉴鱼类</span>
+            <span class="tag">钓鱼竿获取</span>
+            <span class="tag">钓鱼技巧</span>
+        </div>
+    </section>
+
+    <div class="main-container">
+        <!-- Main Content -->
+        <main class="content-section">
+            
+            <!-- Guide Section -->
+            <article id="guide" class="section-card">
+                <div class="section-header">
+                    <h2><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg> 原神钓鱼新手指南</h2>
+                </div>
+                <div class="guide-list">
+                    <div class="guide-item">
+                        <div class="guide-icon">🎣</div>
+                        <div class="guide-content">
+                            <h3>获取初始钓鱼竿</h3>
+                            <p>在蒙德城找NPC阿贝多领取“晨曦酒庄的委托”任务。完成前置任务后，在阿贝多处领取钓鱼竿。这是开启全图钓鱼功能的唯一途径。</p>
+                        </div>
+                    </div>
+                    <div class="guide-item">
+                        <div class="guide-icon">🗺️</div>
+                        <div class="guide-content">
+                            <h3>提米钓鱼任务详解</h3>
+                            <p>在蒙德晨曦酒庄找到提米，完成“和提米一起钓鱼”任务。此任务不仅奖励大量原石，还能解锁特定的鱼类（如金赤假龙、若陀龙王）。</p>
+                        </div>
+                    </div>
+                    <div class="guide-item">
+                        <div class="guide-icon">⚙️</div>
+                        <div class="guide-content">
+                            <h3>调整游戏时间与天气</h3>
+                            <p>部分鱼类仅在特定时间段或天气出现。例如，某些鱼类在白天出现，而稀有鱼类通常在夜晚或暴雨天气下更容易钓到。建议利用游戏内调整时间的功能。</p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Fish Collection Section -->
+            <article id="map" class="section-card">
+                <div class="section-header">
+                    <h2><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg> 稻妻与须弥稀有鱼类</h2>
+                </div>
+                <p style="margin-bottom: 16px; color: var(--text-sub); font-size: 0.9rem;">稻妻地区新增了多种特殊鱼类，需在特定时间或天气下前往相应水域。</p>
+                <div class="fish-grid">
+                    <div class="fish-card">
+                        <img src="https://placehold.co/64x64/0077ff/ffffff?text=金赤" alt="金赤假龙" class="fish-icon">
+                        <div class="fish-name">金赤假龙</div>
+                        <div class="fish-location">清籁岛 · 稻妻城</div>
+                    </div>
+                    <div class="fish-card">
+                        <img src="https://placehold.co/64x64/ff9d00/ffffff?text=若陀" alt="若陀龙王" class="fish-icon">
+                        <div class="fish-name">若陀龙王</div>
+                        <div class="fish-location">无相之草附近</div>
+                    </div>
+                    <div class="fish-card">
+                        <img src="https://placehold.co/64x64/00b8d4/ffffff?text=冰雾" alt="冰雾花鳉" class="fish-icon">
+                        <div class="fish-name">冰雾花鳉</div>
+                        <div class="fish-location">永冻湖区域</div>
+                    </div>
+                    <div class="fish-card">
+                        <img src="https://placehold.co/64x64/ff5252/ffffff?text=雷鸣仙" alt="雷鸣仙" class="fish-icon">
+                        <div class="fish-name">雷鸣仙</div>
+                        <div class="fish-location">珊瑚宫 · 暴雨夜</div>
+                    </div>
+                </div>
+                <a href="#" class="btn">查看全图鉴列表</a>
+            </article>
+
+            <!-- FAQ Section -->
+            <section id="faq" class="faq-section">
+                <div class="section-header" style="border-bottom: none; margin-bottom: 0; padding-bottom: 0;">
+                    <h2>常见问题解答</h2>
+                </div>
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <div class="faq-question">Q: 钓鱼竿可以交易吗？</div>
+                        <div class="faq-answer">A: 钓鱼竿是角色专属道具，无法通过交易给其他玩家，只能在领取任务的账号内使用。</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">Q: 如何获得所有鱼类图鉴？</div>
+                        <div class="faq-answer">A: 需要完成提米任务解锁基础鱼类。对于稀有鱼类，建议查看具体分布表，注意游戏时间调整和天气变化。</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">Q: 鱼类会刷新吗？</div>
+                        <div class="faq-answer">A: 游戏内大部分鱼类在玩家离开水面后一段时间会重新刷新。建议使用“钓鱼笔记”记录已捕获鱼类。</div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-card">
+                <h3>📍 热门钓鱼点位</h3>
+                <ul class="location-list">
+                    <li>
+                        <span class="location-name">蒙德 · 风起地</span>
+                        <span class="location-detail">常见鱼类：花鳉、鲈鱼</span>
+                    </li>
+                    <li>
+                        <span class="location-name">璃月 · 渡月港</span>
+                        <span class="location-detail">常见鱼类：吞星鲤鱼、魔物鱼</span>
+                    </li>
+                    <li>
+                        <span class="location-name">稻妻 · 稻妻城</span>
+                        <span class="location-detail">常见鱼类：苦炮鲽、金赤假龙</span>
+                    </li>
+                    <li>
+                        <span class="location-name">须弥 · 须弥城</span>
+                        <span class="location-detail">常见鱼类：金赤假龙、若陀龙王</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="sidebar-card">
+                <h3>💡 钓鱼小贴士</h3>
+                <p style="font-size: 0.9rem; color: var(--text-sub); margin-top: 8px;">
+                    当钓到鱼影时，不要立即点击。等待鱼影变大并完全吞钩后，再点击屏幕进行捕捉。耐心是钓鱼的关键。
+                </p>
+            </div>
+        </aside>
+    </div>
+
+    <footer>
+        <p>本站为玩家攻略分享平台，原神游戏版权归米哈游所有。</p>
+        <p style="margin-top: 8px; font-size: 0.8rem;">&copy; 2023 原神钓鱼攻略指南</p>
+    </footer>
+
+</body>
+</html>
