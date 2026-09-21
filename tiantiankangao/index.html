@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="天天看高清影视 - 提供最新热门电影、电视剧、动漫、综艺的在线高清免费观看服务，支持多终端流畅播放，更新及时，画质清晰。">
+    <meta name="keywords" content="天天看高清影视, 在线电影, 电视剧观看, 高清免费视频, 热门动漫, 综艺直播">
+    <title>天天看高清影视 - 最新热门电影电视剧在线高清观看平台</title>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-color: #e50914; /* 类似Netflix红 */
+            --primary-hover: #b20710;
+            --bg-dark: #141414;
+            --bg-card: #1f1f1f;
+            --text-main: #ffffff;
+            --text-secondary: #b3b3b3;
+            --nav-height: 64px;
+            --container-width: 1200px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.2s;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* 顶部导航 */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--nav-height);
+            background: linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            padding: 0 24px;
+            transition: background-color 0.3s;
+        }
+
+        header.scrolled {
+            background-color: var(--bg-dark);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-right: 32px;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .nav-links a {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--text-main);
+        }
+
+        .search-box {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            background: rgba(0,0,0,0.5);
+            border: 1px solid #333;
+            border-radius: 4px;
+            padding: 4px 8px;
+        }
+
+        .search-box input {
+            background: transparent;
+            border: none;
+            color: white;
+            outline: none;
+            width: 200px;
+        }
+
+        .search-box button {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+        }
+
+        /* Hero 区域 */
+        .hero {
+            position: relative;
+            height: 80vh;
+            min-height: 500px;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            padding: 0 24px;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, var(--bg-dark) 0%, transparent 60%),
+                        linear-gradient(to right, rgba(0,0,0,0.8) 0%, transparent 50%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            max-width: 600px;
+        }
+
+        .hero-tag {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 4px 8px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 12px;
+            border-radius: 2px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 16px;
+            line-height: 1.1;
+        }
+
+        .hero p {
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+            font-size: 1.1rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 10px 24px;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .btn-secondary {
+            background-color: rgba(255,255,255,0.3);
+            color: white;
+            margin-left: 12px;
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(255,255,255,0.5);
+        }
+
+        /* 通用布局 */
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 40px 24px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 24px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 12px;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--text-main);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -13px;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+
+        .section-more {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .section-more:hover {
+            color: var(--primary-color);
+        }
+
+        /* 卡片网格 */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 24px;
+        }
+
+        .card {
+            background-color: var(--bg-card);
+            border-radius: 4px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        }
+
+        .card-poster {
+            width: 100%;
+            aspect-ratio: 2/3;
+            background-color: #333;
+            position: relative;
+        }
+
+        .card-poster img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .card-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        .card:hover .card-overlay {
+            opacity: 1;
+        }
+
+        .play-icon {
+            font-size: 40px;
+            color: white;
+        }
+
+        .card-info {
+            padding: 12px;
+        }
+
+        .card-title {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .card-meta {
+            font-size: 12px;
+            color: var(--text-secondary);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .quality-tag {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background-color: rgba(0,0,0,0.7);
+            color: #46d369;
+            font-size: 10px;
+            padding: 2px 4px;
+            border-radius: 2px;
+            font-weight: bold;
+        }
+
+        /* 轮播图模拟 */
+        .featured-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 16px;
+            height: 400px;
+        }
+
+        .featured-main {
+            background-color: var(--bg-card);
+            border-radius: 4px;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .featured-main img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+
+        .featured-main:hover img {
+            opacity: 0.6;
+        }
+
+        .featured-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 24px;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+        }
+
+        .featured-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            overflow-y: auto;
+            padding-right: 4px;
+        }
+
+        .featured-item {
+            background-color: var(--bg-card);
+            border-radius: 4px;
+            display: flex;
+            height: 110px;
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        .featured-item img {
+            width: 80px;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .featured-item-content {
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .featured-item-title {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+
+        .featured-item-meta {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        /* 分类列表 */
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+
+        .category-item {
+            background-color: var(--bg-card);
+            padding: 20px;
+            border-radius: 4px;
+            text-align: center;
+            transition: background-color 0.2s;
+            cursor: pointer;
+        }
+
+        .category-item:hover {
+            background-color: #333;
+        }
+
+        .category-icon {
+            font-size: 24px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .category-name {
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        /* 页脚 */
+        footer {
+            background-color: #000;
+            padding: 60px 0 20px;
+            margin-top: 60px;
+            border-top: 1px solid #333;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .footer-col ul li a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            color: #555;
+            font-size: 12px;
+            padding-top: 20px;
+            border-top: 1px solid #222;
+        }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .featured-grid {
+                grid-template-columns: 1fr;
+                height: auto;
+            }
+
+            .featured-main {
+                height: 250px;
+            }
+
+            .category-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header id="navbar">
+        <div class="logo">天天看高清影视</div>
+        <nav class="nav-links">
+            <a href="#" class="active">首页</a>
+            <a href="#">电影</a>
+            <a href="#">电视剧</a>
+            <a href="#">动漫</a>
+            <a href="#">综艺</a>
+            <a href="#">纪录片</a>
+        </nav>
+        <div class="search-box">
+            <input type="text" placeholder="搜索电影、电视剧...">
+            <button type="button">🔍</button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero" style="background-image: url('https://picsum.photos/seed/hero1/1920/1080');">
+            <div class="hero-content">
+                <span class="hero-tag">今日推荐</span>
+                <h1>星际穿越：未知的边界</h1>
+                <p>在未来的地球，人类面临着前所未有的生存危机。一群探险家利用虫洞，试图寻找人类新的家园。视觉奇观与深刻情感交织的史诗巨作。</p>
+                <div>
+                    <button class="btn btn-primary">▶ 立即播放</button>
+                    <button class="btn btn-secondary">+ 加入片单</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 快速分类 -->
+        <div class="container">
+            <div class="category-grid">
+                <div class="category-item">
+                    <span class="category-icon">🎬</span>
+                    <div class="category-name">动作片</div>
+                </div>
+                <div class="category-item">
+                    <span class="category-icon">💑</span>
+                    <div class="category-name">爱情片</div>
+                </div>
+                <div class="category-item">
+                    <span class="category-icon">🧟</span>
+                    <div class="category-name">恐怖片</div>
+                </div>
+                <div class="category-item">
+                    <span class="category-icon">😄</span>
+                    <div class="category-name">喜剧片</div>
+                </div>
+                <div class="category-item">
+                    <span class="category-icon">🚓</span>
+                    <div class="category-name">犯罪片</div>
+                </div>
+                <div class="category-item">
+                    <span class="category-icon">🧠</span>
+                    <div class="category-name">科幻片</div>
+                </div>
+                <div class="category-item">
+                    <span class="category-icon">⚔️</span>
+                    <div class="category-name">奇幻片</div>
+                </div>
+                <div class="category-item">
+                    <span class="category-icon">🇰🇷</span>
+                    <div class="category-name">韩剧</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 热门推荐 -->
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">热门推荐</h2>
+                <a href="#" class="section-more">查看更多 &gt;</a>
+            </div>
+            <div class="grid">
+                <!-- Movie Card 1 -->
+                <article class="card">
+                    <div class="card-poster">
+                        <img src="https://picsum.photos/seed/mov1/300/450" alt="电影海报">
+                        <span class="quality-tag">4K</span>
+                        <div class="card-overlay">
+                            <span class="play-icon">▶</span>
+                        </div>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">暗夜行者：重生</h3>
+                        <div class="card-meta">
+                            <span>2023</span>
+                            <span>动作</span>
+                        </div>
+                    </div>
+                </article>
+                <!-- Movie Card 2 -->
+                <article class="card">
+                    <div class="card-poster">
+                        <img src="https://picsum.photos/seed/mov2/300/450" alt="电影海报">
+                        <span class="quality-tag">HD</span>
+                        <div class="card-overlay">
+                            <span class="play-icon">▶</span>
+                        </div>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">迷雾之城</h3>
+                        <div class="card-meta">
+                            <span>2022</span>
+                            <span>悬疑</span>
+                        </div>
+                    </div>
+                </article>
+                <!-- Movie Card 3 -->
+                <article class="card">
+                    <div class="card-poster">
+                        <img src="https://picsum.photos/seed/mov3/300/450" alt="电影海报">
+                        <span class="quality-tag">4K</span>
+                        <div class="card-overlay">
+                            <span class="play-icon">▶</span>
+                        </div>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">极速狂飙</h3>
+                        <div class="card-meta">
+                            <span>2023</span>
+                            <span>赛车</span>
+                        </div>
+                    </div>
+                </article>
+                <!-- Movie Card 4 -->
+                <article class="card">
+                    <div class="card-poster">
+                        <img src="https://picsum.photos/seed/mov4/300/450" alt="电影海报">
+                        <span class="quality-tag">HD</span>
+                        <div class="card-overlay">
+                            <span class="play-icon">▶</span>
+                        </div>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">时光旅行者</h3>
+                        <div class="card-meta">
+                            <span>2021</span>
+                            <span>科幻</span>
+                        </div>
+                    </div>
+                </article>
+                <!-- Movie Card 5 -->
+                <article class="card">
+                    <div class="card-poster">
+                        <img src="https://picsum.photos/seed/mov5/300/450" alt="电影海报">
+                        <span class="quality-tag">HD</span>
+                        <div class="card-overlay">
+                            <span class="play-icon">▶</span>
+                        </div>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">森林深处</h3>
+                        <div class="card-meta">
+                            <span>2023</span>
+                            <span>冒险</span>
+                        </div>
+                    </div>
+                </article>
+                <!-- Movie Card 6 -->
+                <article class="card">
+                    <div class="card-poster">
+                        <img src="https://picsum.photos/seed/mov6/300/450" alt="电影海报">
+                        <span class="quality-tag">4K</span>
+                        <div class="card-overlay">
+                            <span class="play-icon">▶</span>
+                        </div>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">最后的防线</h3>
+                        <div class="card-meta">
+                            <span>2022</span>
+                            <span>战争</span>
+                        </div>
+                    </div>
+                </article>
+                <!-- Movie Card 7 -->
+                <article class="card">
+                    <div class="card-poster">
+                        <img src="https://picsum.photos/seed/mov7/300/450" alt="电影海报">
+                        <span class="quality-tag">HD</span>
+                        <div class="card-overlay">
+                            <span class="play-icon">▶</span>
+                        </div>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">无声告白</h3>
+                        <div class="card-meta">
+                            <span>2023</span>
+                            <span>剧情</span>
+                        </div>
+                    </div>
+                </article>
+                <!-- Movie Card 8 -->
+                <article class="card">
+                    <div class="card-poster">
+                        <img src="https://picsum.photos/seed/mov8/300/450" alt="电影海报">
+                        <span class="quality-tag">HD</span>
+                        <div class="card-overlay">
+                            <span class="play-icon">▶</span>
+                        </div>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">云端之上</h3>
+                        <div class="card-meta">
+                            <span>2021</span>
+                            <span>动画</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+
+        <!-- 精选轮播 -->
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">精选片单</h2>
+                <a href="#" class="section-more">更多推荐 &gt;</a>
+            </div>
+            <div class="featured-grid">
+                <div class="featured-main">
+                    <img src="https://picsum.photos/seed/featured/800/400" alt="精选封面">
+                    <div class="featured-info">
+                        <span class="hero-tag">本周必看</span>
+                        <h3 style="font-size: 24px; margin: 10px 0;">奥斯卡获奖经典合集</h3>
+                        <p style="color: #ccc; font-size: 14px;">汇集历年奥斯卡最佳影片，体验影史巅峰之作。</p>
+                    </div>
+                </div>
+                <div class="featured-list">
+                    <div class="featured-item">
+                        <img src="https://picsum.photos/seed/f1/100/150" alt="缩略图">
+                        <div class="featured-item-content">
+                            <div class="featured-item-title">黑客帝国：重制版</div>
+                            <div class="featured-item-meta">科幻 / 动作</div>
+                        </div>
+                    </div>
+                    <div class="featured-item">
+                        <img src="https://picsum.photos/seed/f2/100/150" alt="缩略图">
+                        <div class="featured-item-content">
+                            <div class="featured-item-title">泰坦尼克号</div>
+                            <div class="featured-item-meta">爱情 / 剧情</div>
+                        </div>
+                    </div>
+                    <div class="featured-item">
+                        <img src="https://picsum.photos/seed/f3/100/150" alt="缩略图">
+                        <div class="featured-item-content">
+                            <div class="featured-item-title">肖申克的救赎</div>
+                            <div class="featured-item-meta">剧情 / 犯罪</div>
+                        </div>
+                    </div>
+                    <div class="featured-item">
+                        <img src="https://picsum.photos/seed/f4/100/150" alt="缩略图">
+                        <div class="featured-item-content">
+                            <div class="featured-item-title">阿甘正传</div>
+                            <div class="featured-item-meta">剧情 / 爱情</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 最新更新 -->
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">最新更新</h2>
+                <a href="#" class="section-more">查看历史 &gt;</a>
+            </div>
+            <div class="grid">
+                <article class="card">
+                    <div class="card-poster">
+                        <img src="https://picsum.photos/seed/up1/300/450" alt="剧集海报">
+                        <div class="card-overlay">
+                            <span class="play-icon">▶</span>
+                        </div>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">庆余年 第二季</h3>
+                        <div class="card-meta">
+                            <span>更新至 18 集</span>
+                            <span>古装</span>
+                        </div>
+                    </div>
+                </article>
+                <article class="card">
+                    <div class="card-poster">
+                        <img src="https://picsum.photos/seed/up2/300/450" alt="剧集海报">
+                        <div class="card-overlay">
+                            <span class="play-icon">▶</span>
+                        </div>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">繁花</h3>
+                        <div class="card-meta">
+                            <span>更新至 30 集</span>
+                            <span>剧情</span>
+                        </div>
+                    </div>
+                </article>
+                <article class="card">
+                    <div class="card-poster">
+                        <img src="https://picsum.photos/seed/up3/300/450" alt="剧集海报">
+                        <div class="card-overlay">
+                            <span class="play-icon">▶</span>
+                        </div>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">三体：黑暗森林</h3>
+                        <div class="card-meta">
+                            <span>更新至 12 集</span>
+                            <span>科幻</span>
+                        </div>
+                    </div>
+                </article>
+                <article class="card">
+                    <div class="card-poster">
+                        <img src="https://picsum.photos/seed/up4/300/450" alt="剧集海报">
+                        <div class="card-overlay">
+                            <span class="play-icon">▶</span>
+                        </div>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">漫长的季节</h3>
+                        <div class="card-meta">
+                            <span>全集完结</span>
+                            <span>悬疑</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>关于天天看</h4>
+                    <ul>
+                        <li><a href="#">网站简介</a></li>
+                        <li><a href="#">联系我们</a></li>
+                        <li><a href="#">免责声明</a></li>
+                        <li><a href="#">版权声明</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>帮助中心</h4>
+                    <ul>
+                        <li><a href="#">播放问题</a></li>
+                        <li><a href="#">账号注册</a></li>
+                        <li><a href="#">投屏指南</a></li>
+                        <li><a href="#">常见问题</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>观看指南</h4>
+                    <ul>
+                        <li><a href="#">高清线路</a></li>
+                        <li><a href="#">最新电影</a></li>
+                        <li><a href="#">高分剧集</a></li>
+                        <li><a href="#">经典回顾</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>关注我们</h4>
+                    <ul>
+                        <li><a href="#">微信公众号</a></li>
+                        <li><a href="#">新浪微博</a></li>
+                        <li><a href="#">QQ群</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 天天看高清影视. All Rights Reserved. 本站所有内容均来自互联网，仅供学习交流使用。</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 简单的导航栏滚动效果
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // 简单的卡片点击交互反馈
+        document.querySelectorAll('.card, .featured-item').forEach(item => {
+            item.addEventListener('click', function(e) {
+                // 阻止默认行为，模拟跳转
+                // 实际项目中这里会跳转到详情页
+                console.log('Clicked item');
+            });
+        });
+    </script>
+</body>
+                          </html>
