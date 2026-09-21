@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="24meinv收录全网最热24小时美女图、时尚街拍、潮流穿搭及明星动态。每日更新高清美图，提供即时时尚资讯与潮流趋势分析。">
+    <meta name="keywords" content="24meinv,24小时美女,街拍,时尚,美图,明星,穿搭">
+    <title>24meinv-每日24小时精选美图与时尚潮流资讯</title>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-color: #d81e06;
+            --secondary-color: #ff6b6b;
+            --dark-bg: #121212;
+            --card-bg: #1e1e1e;
+            --text-main: #ffffff;
+            --text-sub: #b0b0b0;
+            --spacing-sm: 8px;
+            --spacing-md: 16px;
+            --spacing-lg: 24px;
+            --container-width: 1200px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.2s;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Utility */
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            font-size: 12px;
+            background-color: var(--primary-color);
+            border-radius: 4px;
+            color: white;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        /* Header */
+        header {
+            background-color: rgba(30, 30, 30, 0.95);
+            border-bottom: 1px solid #333;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo span {
+            color: var(--primary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: var(--spacing-lg);
+        }
+
+        .nav-links a {
+            font-size: 16px;
+            color: var(--text-sub);
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--text-main);
+        }
+
+        .search-box {
+            display: flex;
+            background: #333;
+            border-radius: 20px;
+            padding: 4px 12px;
+        }
+
+        .search-box input {
+            background: transparent;
+            border: none;
+            color: white;
+            outline: none;
+            width: 150px;
+        }
+
+        .search-box button {
+            background: none;
+            border: none;
+            color: var(--text-sub);
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 500px;
+            overflow: hidden;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .hero-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+
+        .hero-slide.active {
+            opacity: 1;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+            padding: 60px 0 30px;
+        }
+
+        .hero-content h1 {
+            font-size: 42px;
+            margin-bottom: var(--spacing-sm);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero-content p {
+            font-size: 18px;
+            color: #ddd;
+            max-width: 600px;
+        }
+
+        /* Section Titles */
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: var(--spacing-lg);
+            border-bottom: 2px solid #333;
+            padding-bottom: var(--spacing-sm);
+        }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: bold;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 60px;
+            height: 2px;
+            background-color: var(--primary-color);
+        }
+
+        .view-all {
+            color: var(--text-sub);
+            font-size: 14px;
+        }
+
+        .view-all:hover {
+            color: var(--primary-color);
+        }
+
+        /* Grid Layouts */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        /* Card Styles */
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+        .card-image {
+            width: 100%;
+            height: 200px;
+            background-color: #333;
+            position: relative;
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .card-tag {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: rgba(0,0,0,0.7);
+            color: white;
+            padding: 4px 8px;
+            font-size: 12px;
+            border-radius: 4px;
+        }
+
+        .card-body {
+            padding: var(--spacing-md);
+        }
+
+        .card-title {
+            font-size: 18px;
+            margin-bottom: var(--spacing-sm);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .card-meta {
+            display: flex;
+            justify-content: space-between;
+            color: var(--text-sub);
+            font-size: 13px;
+        }
+
+        /* Featured List */
+        .featured-list {
+            display: flex;
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .featured-item {
+            flex: 1;
+            display: flex;
+            gap: var(--spacing-md);
+            background: var(--card-bg);
+            padding: var(--spacing-md);
+            border-radius: 12px;
+            cursor: pointer;
+        }
+
+        .featured-item:hover {
+            background: #252525;
+        }
+
+        .featured-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 8px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .featured-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .featured-info h3 {
+            font-size: 18px;
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+
+        .featured-info p {
+            color: var(--text-sub);
+            font-size: 14px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        /* Tags Cloud */
+        .tags-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .tag {
+            padding: 6px 12px;
+            background-color: #2a2a2a;
+            border-radius: 20px;
+            font-size: 13px;
+            color: var(--text-sub);
+            transition: all 0.2s;
+        }
+
+        .tag:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #0a0a0a;
+            padding: 60px 0 20px;
+            margin-top: 60px;
+            border-top: 1px solid #333;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            font-size: 16px;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a {
+            color: var(--text-sub);
+            font-size: 14px;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        .copyright {
+            text-align: center;
+            color: #555;
+            font-size: 13px;
+            padding-top: 20px;
+            border-top: 1px solid #222;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-inner {
+                flex-direction: column;
+                height: auto;
+                padding: 10px 0;
+                gap: 15px;
+            }
+
+            .nav-links {
+                gap: 15px;
+                font-size: 14px;
+            }
+
+            .search-box {
+                width: 100%;
+            }
+
+            .search-box input {
+                width: 100%;
+            }
+
+            .hero {
+                height: 350px;
+            }
+
+            .hero-content h1 {
+                font-size: 28px;
+            }
+
+            .featured-list {
+                flex-direction: column;
+            }
+
+            .featured-item {
+                flex-direction: column;
+            }
+
+            .featured-img {
+                width: 100%;
+                height: 180px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container header-inner">
+            <a href="#" class="logo">
+                <span>24</span>meinv
+            </a>
+            <nav class="nav-links">
+                <a href="#" class="active">首页</a>
+                <a href="#">每日精选</a>
+                <a href="#">明星街拍</a>
+                <a href="#">时尚穿搭</a>
+                <a href="#">美妆教程</a>
+            </nav>
+            <div class="search-box">
+                <input type="text" placeholder="搜索美图、明星...">
+                <button>🔍</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Slider -->
+        <section class="hero">
+            <div class="hero-slide active" style="background-image: url('https://picsum.photos/seed/hero1/1920/600');"></div>
+            <div class="hero-slide" style="background-image: url('https://picsum.photos/seed/hero2/1920/600');"></div>
+            <div class="hero-slide" style="background-image: url('https://picsum.photos/seed/hero3/1920/600');"></div>
+            <div class="hero-overlay">
+                <div class="container hero-content">
+                    <h1>时尚潮流，每日更新</h1>
+                    <p>汇聚全球24小时最新时尚资讯与高清美图，捕捉每一个动人瞬间。</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="container">
+            <!-- Featured Section -->
+            <section class="featured-list">
+                <article class="featured-item">
+                    <div class="featured-img">
+                        <img src="https://picsum.photos/seed/fashion1/300/300" alt="时尚穿搭">
+                    </div>
+                    <div class="featured-info">
+                        <span class="badge">今日头条</span>
+                        <h3>2024春夏流行色趋势解析：如何运用莫兰迪色系打造高级感</h3>
+                        <p>本季时尚界最关注的色彩趋势，从服装到配饰，全方位解析如何将莫兰迪色系融入日常穿搭...</p>
+                    </div>
+                </article>
+                <article class="featured-item">
+                    <div class="featured-img">
+                        <img src="https://picsum.photos/seed/street/300/300" alt="街拍">
+                    </div>
+                    <div class="featured-info">
+                        <span class="badge">热门话题</span>
+                        <h3>东京街头最新街拍：复古与机能风的完美融合</h3>
+                        <p>深入东京涩谷原宿，记录下那些令人眼前一亮的街头造型，为你的日常穿搭提供灵感...</p>
+                    </div>
+                </article>
+            </section>
+
+            <!-- Hot Images Grid -->
+            <section>
+                <div class="section-header">
+                    <h2 class="section-title">24小时热门美图</h2>
+                    <a href="#" class="view-all">查看更多 &rarr;</a>
+                </div>
+                <div class="grid-3">
+                    <article class="card">
+                        <div class="card-image">
+                            <span class="card-tag">明星动态</span>
+                            <img src="https://picsum.photos/seed/p1/400/300" alt="明星美图">
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">某知名女星红毯造型惊艳亮相，气场全开</h3>
+                            <div class="card-meta">
+                                <span>2小时前</span>
+                                <span>12.5k 浏览</span>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="card">
+                        <div class="card-image">
+                            <span class="card-tag">街拍</span>
+                            <img src="https://picsum.photos/seed/p2/400/300" alt="街拍美图">
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">周末Citywalk：发现城市角落里的绝美穿搭</h3>
+                            <div class="card-meta">
+                                <span>4小时前</span>
+                                <span>8.2k 浏览</span>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="card">
+                        <div class="card-image">
+                            <span class="card-tag">美妆</span>
+                            <img src="https://picsum.photos/seed/p3/400/300" alt="美妆美图">
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">新手必看：零基础如何画出伪素颜妆容</h3>
+                            <div class="card-meta">
+                                <span>5小时前</span>
+                                <span>15k 浏览</span>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="card">
+                        <div class="card-image">
+                            <span class="card-tag">时尚</span>
+                            <img src="https://picsum.photos/seed/p4/400/300" alt="时尚美图">
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">极简主义穿搭指南：少即是多的美学哲学</h3>
+                            <div class="card-meta">
+                                <span>6小时前</span>
+                                <span>6.3k 浏览</span>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="card">
+                        <div class="card-image">
+                            <span class="card-tag">摄影</span>
+                            <img src="https://picsum.photos/seed/p5/400/300" alt="摄影美图">
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">光影艺术：如何利用自然光拍摄出通透人像</h3>
+                            <div class="card-meta">
+                                <span>8小时前</span>
+                                <span>9.1k 浏览</span>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="card">
+                        <div class="card-image">
+                            <span class="card-tag">旅行</span>
+                            <img src="https://picsum.photos/seed/p6/400/300" alt="旅行美图">
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">海岛度假风：如何在沙滩上拍出夏日清新照</h3>
+                            <div class="card-meta">
+                                <span>10小时前</span>
+                                <span>11k 浏览</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <!-- Categories / Tags -->
+            <section>
+                <div class="section-header">
+                    <h2 class="section-title">热门分类</h2>
+                </div>
+                <div class="tags-cloud">
+                    <a href="#" class="tag">欧美街拍</a>
+                    <a href="#" class="tag">韩流时尚</a>
+                    <a href="#" class="tag">国风穿搭</a>
+                    <a href="#" class="tag">超模写真</a>
+                    <a href="#" class="tag">网红打卡</a>
+                    <a href="#" class="tag">OL通勤装</a>
+                    <a href="#" class="tag">私服分享</a>
+                    <a href="#" class="tag">复古风</a>
+                    <a href="#" class="tag">运动风</a>
+                    <a href="#" class="tag">街头潮流</a>
+                    <a href="#" class="tag">婚纱摄影</a>
+                    <a href="#" class="tag">人像摄影</a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>关于 24meinv</h4>
+                    <ul>
+                        <li><a href="#">网站介绍</a></li>
+                        <li><a href="#">加入我们</a></li>
+                        <li><a href="#">联系方式</a></li>
+                        <li><a href="#">免责声明</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>热门频道</h4>
+                    <ul>
+                        <li><a href="#">高清美图</a></li>
+                        <li><a href="#">明星动态</a></li>
+                        <li><a href="#">潮流资讯</a></li>
+                        <li><a href="#">摄影教程</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>友情链接</h4>
+                    <ul>
+                        <li><a href="#">时尚周刊</a></li>
+                        <li><a href="#">潮流前线</a></li>
+                        <li><a href="#">摄影之家</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>订阅更新</h4>
+                    <p style="color: #999; font-size: 13px; margin-bottom: 10px;">获取每日精选美图推送</p>
+                    <div class="search-box" style="background: transparent; padding: 0;">
+                        <input type="email" placeholder="输入邮箱地址" style="width: 100%; background: #333; border: 1px solid #444; color: white; padding: 8px; border-radius: 4px;">
+                        <button style="background: var(--primary-color); color: white; border: none; padding: 0 15px; border-radius: 4px; cursor: pointer;">订阅</button>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2024 24meinv. All rights reserved. 仅供学习与展示使用。</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple Hero Slider Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const slides = document.querySelectorAll('.hero-slide');
+            let currentSlide = 0;
+
+            if (slides.length > 0) {
+                setInterval(() => {
+                    slides[currentSlide].classList.remove('active');
+                    currentSlide = (currentSlide + 1) % slides.length;
+                    slides[currentSlide].classList.add('active');
+                }, 5000); // Change slide every 5 seconds
+            }
+        });
+    </script>
+</body>
+                      </html>
